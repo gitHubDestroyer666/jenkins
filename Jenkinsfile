@@ -32,10 +32,20 @@ node {
   
   stage('Test') {
     echo "Comienzan las pruebas ..."
+    withMaven(
+       maven:'Maven Defecto (3.6)'
+    ){
+      sh 'mvn test'
+    }
   }
   
   stage('Empaquetar') {
     echo "Comienza el empaquetado ..."
+    withMaven(
+       maven:'Maven Defecto (3.6)'
+    ){
+      sh 'mvn package'
+    }
   }
 }
 
