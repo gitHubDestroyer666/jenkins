@@ -22,8 +22,12 @@ node {
 node {
   checkout scm
   stage('Compilar') {
-    //echo "Comienza la compilación ..."
-    mvn compile
+    echo "Comienza la compilación ..."
+    withMaven(
+       maven:'Maven Defecto (3.6)'
+    ){
+      sh 'mvn compile'
+    }
   }
   
   stage('Test') {
