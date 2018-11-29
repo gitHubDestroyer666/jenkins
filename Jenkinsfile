@@ -1,5 +1,5 @@
-p/*
-ipeline {
+/*
+pipeline {
   agent any
   stages {
     stage('Etapa 1') {
