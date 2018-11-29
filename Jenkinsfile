@@ -20,8 +20,10 @@ node {
 */
 
 node {
+  checkout scm
   stage('Compilar') {
-    echo "Comienza la compilación ..."
+    //echo "Comienza la compilación ..."
+    mvn compile
   }
   
   stage('Test') {
