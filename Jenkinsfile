@@ -52,7 +52,7 @@ node {
 }
 */
 
-
+/*
 node {
   checkout scm
   stage('Compilar') {
@@ -63,7 +63,8 @@ node {
   stage('Test') {
     echo "Comienzan las pruebas ..."
       sh 'mvn test'
-    junit '**/*.xml'
+      //ojo detrás de ** quitar el blanco y dejarlo todo junto
+    junit '** /*.xml'
   }
   
   stage('Empaquetar') {
@@ -77,4 +78,44 @@ node {
     }
   }
 }
+*/
 
+pipeline {
+  agent any
+  stages {
+    stage('Compilar') {
+      steps {
+        echo 'Comienza la compilación ...'
+        withMaven(
+           maven:'Maven Defecto (3.6)'
+        ){
+          sh 'mvn compile'
+        }
+      }
+    }
+    
+    
+    stage('Test') {
+      steps {
+        echo 'Comienzan las pruebas ...'
+        withMaven(
+           maven:'Maven Defecto (3.6)'
+        ){
+          sh 'mvn test'
+        }
+      }
+    }
+    
+    stage('Empaquetar') {
+      steps {
+        echo "Comienza el empaquetado ..."
+        withMaven(
+           maven:'Maven Defecto (3.6)'
+        ){
+          sh 'mvn package'
+        }
+      }
+    }
+    
+  }
+}
