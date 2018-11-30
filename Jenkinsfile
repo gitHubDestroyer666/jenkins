@@ -109,10 +109,15 @@ pipeline {
     stage('Empaquetar') {
       steps {
         echo "Comienza el empaquetado Pipeline ..."
-        withMaven(
-           maven:'Maven Defecto (3.6)'
-        ){
-          sh 'mvn package'
+        try{
+            withMaven(
+               maven:'Maven Defecto (3.6)'
+            ){
+              sh 'mvn package'
+            }
+        }    
+        finally{
+            //deleteDir()
         }
       }
     }
