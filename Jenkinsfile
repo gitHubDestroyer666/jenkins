@@ -153,6 +153,7 @@ pipeline {
 }
 */
 
+/*
 node {
     try {
         stage('Test') {
@@ -176,3 +177,38 @@ node {
         echo 'Se ejecuta siempre'
     }
 }
+*/
+
+
+
+node ('master'){
+  checkout scm
+  stage('Compilar') {
+    echo "Comienza la compilación ..."
+    withMaven(
+       maven:'Maven Defecto (3.6)'
+    ){
+      sh 'mvn compile'
+    }
+  }
+  
+  stage('Test') {
+    echo "Comienzan las pruebas ..."
+    withMaven(
+       maven:'Maven Defecto (3.6)'
+    ){
+      sh 'mvn test'
+    }
+  }
+  
+  stage('Empaquetar') {
+    echo "Comienza el empaquetado ..."
+    withMaven(
+       maven:'Maven Defecto (3.6)'
+    ){
+      sh 'mvn package'
+    }
+  }
+}
+
+
