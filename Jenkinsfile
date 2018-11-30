@@ -72,7 +72,7 @@ node {
       sh 'mvn package'
     }    
     finally{
-        77deleteDir()
+        //deleteDir()
     }
   }
 }
