@@ -109,6 +109,7 @@ pipeline {
     stage('Empaquetar') {
       steps {
         echo "Comienza el empaquetado Pipeline ..."
+        /*
         script {
           try{
               withMaven(
@@ -122,8 +123,29 @@ pipeline {
           }
           
         }
+        */
       }
     }
     
   }
+  
+  post{
+    always{
+      deleteDir()
+    }
+    
+    failure{
+      echo 'Upsss!!!!!'
+    }
+    
+    success{
+      echo 'Rula!!!!'
+    }
+    
+    changed{
+      echo 'Cambio'
+    }
+    
+  }
+  
 }
