@@ -19,6 +19,8 @@ node {
 }
 */
 
+/*
+Rula
 node {
   checkout scm
   stage('Compilar') {
@@ -45,6 +47,32 @@ node {
        maven:'Maven Defecto (3.6)'
     ){
       sh 'mvn package'
+    }
+  }
+}
+*/
+
+
+node {
+  checkout scm
+  stage('Compilar') {
+    echo "Comienza la compilación ..."
+      sh 'mvn compile'
+  }
+  
+  stage('Test') {
+    echo "Comienzan las pruebas ..."
+      sh 'mvn test'
+  }
+  
+  stage('Empaquetar') {
+    echo "Comienza el empaquetado ..."
+      
+    try{
+      sh 'mvn package'
+    }    
+    finally{
+        deleteDir()
     }
   }
 }
