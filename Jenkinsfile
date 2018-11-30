@@ -85,7 +85,7 @@ pipeline {
   stages {
     stage('Compilar') {
       steps {
-        echo 'Comienza la compilación ...'
+        echo 'Comienza la compilación Pipeline ...'
         withMaven(
            maven:'Maven Defecto (3.6)'
         ){
@@ -97,7 +97,7 @@ pipeline {
     
     stage('Test') {
       steps {
-        echo 'Comienzan las pruebas ...'
+        echo 'Comienzan las pruebas Pipeline ...'
         withMaven(
            maven:'Maven Defecto (3.6)'
         ){
@@ -108,7 +108,7 @@ pipeline {
     
     stage('Empaquetar') {
       steps {
-        echo "Comienza el empaquetado ..."
+        echo "Comienza el empaquetado Pipeline ..."
         withMaven(
            maven:'Maven Defecto (3.6)'
         ){
