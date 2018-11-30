@@ -63,6 +63,7 @@ node {
   stage('Test') {
     echo "Comienzan las pruebas ..."
       sh 'mvn test'
+    junit '**/*.xml'
   }
   
   stage('Empaquetar') {
